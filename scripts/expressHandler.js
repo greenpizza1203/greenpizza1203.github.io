@@ -31,7 +31,7 @@ async function handle(req, res) {
         res.send('Done');
         return;
     }
-    let path = await getOrSave(params);
+    let path = await cache.getOrSave(params);
 
     res.sendFile(path, {root: process.cwd()});
 }
