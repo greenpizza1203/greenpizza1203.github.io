@@ -1,5 +1,6 @@
-const express= require('express');
-const cache = require('./cacheHandler')
+const express = require('express');
+const cache = require('./cacheHandler');
+
 function init() {
     var app = express();
 
@@ -17,7 +18,6 @@ function init() {
 
 async function handle(req, res) {
 
-    console.log(req.path);
     let params = req.params;
     if (isNaN(params["id"])) {
         res.status(420).end();
@@ -27,7 +27,7 @@ async function handle(req, res) {
         params['0'] = 'index.html'
     }
     if (params['0'] === 'reset') {
-        resetFiles(params.id);
+        cache.resetFiles(params.id);
         res.send('Done');
         return;
     }

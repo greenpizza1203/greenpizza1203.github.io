@@ -2,12 +2,15 @@ const fse = require('fs-extra');
 const request = require('request');
 const config = require('./config.json');
 const base_url = config.base_url;
-var path = require('path');
+const path = require('path');
+const javascriptHandler = require('./javascriptHandler');
+
+
 async function getOrSave(params) {
     const file = `store/${params.id}/${params[0]}`;
 
     if (!fse.existsSync(file)) {
-        await cache.save(params, file)
+        await save(params, file)
     }
     return file;
 }
@@ -22,10 +25,10 @@ async function save(params, file) {
     });
     // console.log(buffer);
     fse.mkdirsSync(path.dirname(file));
-    let pattt = `store/${params.id}/${params['0']}`;
-    console.log(pattt);
+    let local = `store/${params.id}/${params['0']}`;
     await new Promise(resolve => {
-        buffer.pipe(fse.createWriteStream(pattt)).on('finish', function () {
+        buffer.pipe(fse.createWriteStream(local)).on('finish', function () {
+            javascriptHandler.checkDomain(local);
             resolve()
         });
     });
@@ -35,4 +38,9 @@ function resetFiles(id) {
     fse.removeSync(`store/${id}`)
 }
 
-module.exports = {getOrSave, resetFiles};
+function clearCache() {
+
+    fse.removeSync('store')
+}
+
+module.exports = {getOrSave, resetFiles, clearCache};

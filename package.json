@@ -13,6 +13,8 @@
     "fs-extra": "^8.1.0",
     "fse": "^4.0.1",
     "mkdirp": "^0.5.1",
-    "request": "^2.88.0"
+    "replace-in-file": "^4.2.0",
+    "request": "^2.88.0",
+    "yargs": "^14.2.0"
   }
 }
