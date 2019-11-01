@@ -2,7 +2,7 @@ const fse = require('fs-extra');
 const request = require('request');
 const config = require('./config.json');
 const base_url = config.base_url;
-
+var path = require('path');
 async function getOrSave(params) {
     const file = `store/${params.id}/${params[0]}`;
 
@@ -21,7 +21,7 @@ async function save(params, file) {
         }
     });
     // console.log(buffer);
-    fse.mkdirsSync(getDirName(file));
+    fse.mkdirsSync(path.dirname(file));
     let pattt = `store/${params.id}/${params['0']}`;
     console.log(pattt);
     await new Promise(resolve => {
