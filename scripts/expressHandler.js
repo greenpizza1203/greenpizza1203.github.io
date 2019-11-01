@@ -1,4 +1,5 @@
 const express= require('express');
+const cache = require('cacheHandler')
 function init() {
     var app = express();
 
