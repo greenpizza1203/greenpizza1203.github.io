@@ -7,7 +7,7 @@ async function getOrSave(params) {
     const file = `store/${params.id}/${params[0]}`;
 
     if (!fse.existsSync(file)) {
-        await save(params, file)
+        await cache.save(params, file)
     }
     return file;
 }
