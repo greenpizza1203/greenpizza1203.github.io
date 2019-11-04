@@ -6,6 +6,11 @@ function checkDomain(filePath) {
     }
     replace.sync({
         files: filePath,
+        from: /www.coolmathgames/g,
+        to: 'math-stuff.herokuapp',
+    });
+    replace.sync({
+        files: filePath,
         from: /coolmathgames/g,
         to: 'math-stuff.herokuapp',
     });
