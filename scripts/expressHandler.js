@@ -5,7 +5,7 @@ function init() {
     var app = express();
 
     app.get('/', function (req, res) {
-        res.send("Hi")
+        res.send("Hi!")
     });
 
     app.get('/:id/', handle);
