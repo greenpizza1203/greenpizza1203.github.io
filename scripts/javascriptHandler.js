@@ -7,7 +7,7 @@ function checkDomain(filePath) {
     replace.sync({
         files: filePath,
         from: /coolmathgames/g,
-        to: 'herokuapp',
+        to: 'math-stuff.herokuapp',
     });
 
 }
